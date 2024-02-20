@@ -30,7 +30,8 @@ for file in $(cat $file_list); do
 
 
         # check if file is not in readme
-        if [ -z $(grep $file $script_dir/README.md) ]; then
+         
+        if ! grep -q $file $script_dir/README.md; then
 
             echo "- $file" >> $script_dir/README.md
 

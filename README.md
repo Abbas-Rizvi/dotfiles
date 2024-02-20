@@ -2,8 +2,15 @@
 
 Repo for sharing and syncing dot files
 
-included files:
+## How to Use 
 
-- ~/.zshrc
+If using script, clone repo and put all files to be added in files.txt
+
+run script to rsync into dir and update readme 
+
+
+## Included Files:
+
 - ~/.xinitrc
 - ~/.config/mpv
+- ~/.zshrc
