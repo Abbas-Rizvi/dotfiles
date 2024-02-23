@@ -14,5 +14,4 @@ run script to rsync into dir and update readme
 - ~/.xinitrc
 - ~/.config/mpv
 - ~/.zshrc
-- ~/.config/cmus/rc
 - ~/.config/cmus/autosave
