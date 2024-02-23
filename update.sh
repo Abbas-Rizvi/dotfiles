@@ -13,13 +13,26 @@ for file in $(cat $file_list); do
     # replace ~ with $HOME
     file_full=$(echo "$file" | sed "s|^~|${HOME}|ig")
 
-    target_dir="$(pwd)/"
+    target_dir="$script_dir/"
     
     # remove . if exists
     
     # check if file is in config folder
     if [[ $file == *'config'* ]]; then
-        target_dir="$(pwd)/config"
+
+        # target dir set to config
+        target_dir="$script_dir/config"
+
+        # check if file is not a dir (needed for individual config files sometimes)
+        if [ ! -d $file_full ]; then
+
+            # set target dir to path to folder
+            target_dir=$(dirname $target_dir$(echo $dirname $file_full | sed "s|^${HOME}/.config||g"))
+            mkdir -p $target_dir
+        fi
+
+
+
     fi
 
     # check if file exists and sync
