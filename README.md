@@ -15,3 +15,6 @@ run script to rsync into dir and update readme
 - ~/.config/mpv
 - ~/.zshrc
 - ~/.config/cmus/autosave
+- ~/.config/nvim
+- ~/.config/xbindkeys
+- ~/.config/qt5ct
