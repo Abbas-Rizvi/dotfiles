@@ -16,6 +16,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 
+## Enable colors and change prompt:
+autoload -U colors && colors	# Load colors
 # Basic auto/tab complete:
 autoload -U compinit
 #zstyle ':completion:*' menu select
@@ -31,10 +33,36 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 
-## Enable colors and change prompt:
-autoload -U colors && colors	# Load colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 setopt interactive_comments
+
+# Prompt with git branch detection
+autoload -Uz vcs_info
+zstyle ':vcs_info:*' enable git
+zstyle ':vcs_info:*' formats '%b'
+
+precmd() {
+    vcs_info
+    local git_branch="${vcs_info_msg_0_}"
+
+    # Note: %F sets fg color, %f resets
+    # %B sets bold, %b removes bold
+    #
+    if [[ -n ${git_branch} ]]; then
+
+        # Construct PS1 with git_branch only when it's available
+        PS1="%B%F{red}[%F{yellow}%n%F{green}@%F{blue}%M %F{magenta}%~%F{red}]%f %b%F{green}(${git_branch})%f %B$%b "
+
+    else
+
+        PS1="%B%F{red}[%F{yellow}%n%F{green}@%F{blue}%M %F{magenta}%~%F{red}]%f $ "
+
+    fi
+}
+
+setopt prompt_subst
+
+
+
 
 # Coloured file output
 # alias ls='ls --color=auto'

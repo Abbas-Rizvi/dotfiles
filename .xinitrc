@@ -1,26 +1,42 @@
+# Set Wallpaper
 exec nitrogen --restore &
-exec rivalcfg -S 600 -s 600 &
+
+# Set mouse dpi
+exec rivalcfg -S 500 -s 500 &
 #exec compfy --daemon &
 
-#exec keepassxc &
 #exec numlockx &
 
 # Bar for DWM
 exec ~/programs/suckless/dwm-bar/dwm_bar.sh &
-#exec dwmblocks &
 
+# set repeat rate
+xset r rate 300 50 &
 
-
+# Keybinds 
 exec xbindkeys -f /home/abbas/.config/xbindkeys/xbindkeysrc &
+
+# Soulseek
 exec nicotine &
-#exec keepassxc &
 
-
-#exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
+# Email
 exec thunderbird &
 
+# Terminal Colours
+xrdb -merge ~/.Xresources &
 
-# nmcli connection up vultr-vpn &
+# Microphone Filter
+noisetorch &
+ 
+# Policy Kit (Used for file manager)
+lxqt-policykit-agent &
+
+# Control lights on computer
+# openrgb &
+#
+source ~/scripts/fix_mouse_sens.sh &
+
+
 
 exec ~/scripts/startdwm.sh
 
